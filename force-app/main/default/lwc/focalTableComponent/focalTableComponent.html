@@ -1,0 +1,31 @@
+<template>
+
+<!---->
+    <p> Welcome to LWC </p>
+
+
+    <lightning-datatable
+                key-field="accountsId"
+                data={accounts}
+                columns={columns}>
+    </lightning-datatable>
+    
+<!---->
+
+<table>
+    <template for:each={columns} for:item = 'col'>
+        <th key={col.Id}>{col.label}</th>
+    </template>
+
+    <template for:each={accounts} for:item ='acc'>
+        <tr key={acc.Id}>
+            <th>{acc.Id}</th>
+            <th>{acc.Name></th>}
+            <th>{acc.phone}</th>
+        </tr>
+
+    </template>
+
+</table>
+
+</template>
