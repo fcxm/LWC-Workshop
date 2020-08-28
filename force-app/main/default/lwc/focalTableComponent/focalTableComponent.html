@@ -1,0 +1,57 @@
+<template>
+    <p>Welcome to LWC.</p>
+
+    <!-- <lightning-datatable 
+        key-field="accountsId"
+        data={accounts}
+        columns={columns}
+        onsave={handleSave}
+        draft-values={draftValues}>
+    </lightning-datatable>
+    <c-focal-row-component onrowvalues={handlevalue}></c-focal-row-component> -->
+    <lightning-button label="Save"
+                      onclick={handleSave}>
+    </lightning-button>
+
+    <table>
+        <template for:each={columns} for:item='col'>
+            <th key={col.Id}>{col.label}</th>
+        </template>
+        <template for:each={accounts} for:item='acc'>
+            <tr key={acc.Id}>
+                <td>
+                    <template if:true={inlineEdit}>
+                        <lightning-input type="text" class="slds-input inputFieldWidth" onfocusout={closeNameBox}
+                            onchange={onIdChange} label="Enter some text" value={acc.Id}></lightning-input>
+                    </template>
+                    <template if:false={inlineEdit}>
+                        <c-focal-row-component field-value={acc.Id} record-id={acc.Id}></c-focal-row-component>
+                    </template>
+                </td>
+                <td>
+                    <template if:true={inlineEdit}>
+                        <lightning-input type="text" class="slds-input inputFieldWidth" onfocusout={closeNameBox}
+                            onchange={onNameChange} name="input1" data-id={acc.Id} label="Enter some text"
+                            value={acc.Name}></lightning-input>
+                    </template>
+                    <template if:false={inlineEdit}>
+                        <c-focal-row-component field-value={acc.Name} record-id={acc.Id}></c-focal-row-component>
+                    </template>
+                </td>
+                <td>
+                    <template if:true={inlineEdit}>
+                        <lightning-input type="text" class="slds-input inputFieldWidth" onfocusout={closeNameBox}
+                            onchange={onPhoneChange} label="Enter some text" value={acc.Phone}></lightning-input>
+                    </template>
+                    <template if:false={inlineEdit}>
+                        <c-focal-row-component field-value={acc.Phone} record-id={acc.Id}></c-focal-row-component>
+                    </template>
+                </td>
+                <td>
+                    <c-focal-row-component field-value="Edit" record-id={acc.Id} is-edit=true
+                        oneditaccount={handeleditaccount}></c-focal-row-component>
+                </td>
+            </tr>
+        </template>
+    </table>
+</template>
