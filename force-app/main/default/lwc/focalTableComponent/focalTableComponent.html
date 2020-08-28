@@ -1,0 +1,29 @@
+<template>
+    <P>Welcome to LWC.</P>
+   <!-- <lightning-datatable
+                key-field="id"
+                data={accounts}
+                columns={columns}>
+        </lightning-datatable> -->
+        <table>
+                <template for:each={columns} for:item='col'>
+                        <th key={col.Id}> {col.label} </th>
+                    </template>
+                    <template for:each={accounts} for:item='acc'>
+                        
+                        <tr key ={acc.Id} >
+                                <td> <c-focal-table-row account={acc.Id} record-id={acc.Id}> </c-focal-table-row></td>
+                                <td> <c-focal-table-row account={acc.Name} record-id={acc.Id} > </c-focal-table-row></td>
+                                <td> <c-focal-table-row account={acc.Phone} record-id={acc.Id} > </c-focal-table-row></td>
+                                <td> <c-focal-table-row account={acc.Id} record-id={acc.Id} is-edit=true oneditaccount= {handleeditaccount}> </c-focal-table-row></td>
+                             </tr>
+                               
+                           <!--<th>{acc.Id}</th>
+                           <th>{acc.Name}</th> 
+                           <th>{acc.Phone}</th> -->     
+                        
+                </template>
+
+        </table>
+
+</template>
