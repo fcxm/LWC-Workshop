@@ -1,0 +1,24 @@
+<template>
+    <p> Welcome to LWC </p>
+
+
+    <!--
+        <lightning-datatable
+                key-field="accountsId"
+                data={accounts}
+                columns={columns}>
+    </lightning-datatable> -->
+    <table>
+        <template style="width: 100%;" for:each={columns} for:item='col'>
+            <th style="width: 25%;" key={col.Id}>
+                {col.label}
+            </th>
+        </template>
+    </table>
+        <template style="width: 100%;" for:each={accounts} for:item='acc'>
+            
+          <c-focal-row-com key= {acc.Id}  acc= {acc} is-edit='true' oneditaccount= {rowevent}></c-focal-row-com>
+        </template>
+    
+    
+</template>
