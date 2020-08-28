@@ -1,0 +1,69 @@
+<template>
+    <p>Welcome to LWC.</p>
+
+    <table>
+
+        <template for:each={columns} for:item = 'col'>
+                <th key = {col.Id}>{col.label}</th>
+        </template>
+
+        <template for:each={accounts} for:item = 'acc'>
+           
+            <tr key = {acc.Id}>
+                <td>
+                    <c-focal-table-row record-id = {acc.Id} field-value={acc.Id}></c-focal-table-row>
+                </td>
+                <td>
+                    <c-focal-table-row record-id = {acc.Name} field-value={acc.Name}></c-focal-table-row>
+                </td>
+                <td>
+                    <c-focal-table-row record-id = {acc.Phone} field-value={acc.Phone}></c-focal-table-row>
+                </td>
+                <td>
+                    <c-focal-table-row record-id = {acc.Id} field-value='Edit' is-edit = true oneditaccount = {handleAccount}></c-focal-table-row>
+                </td>
+           
+            </tr>
+        
+          <!---- <tr key = {acc.Id}>
+            <th>{acc.Id}</th>
+            <th>{acc.Name}</th>
+            <th>{acc.Phone}</th>
+          -->
+        
+    </template>
+
+    </table>
+</template>
+
+
+
+
+
+
+
+<!-- <template>
+    <p>Welcome to LWC.</p>
+    <div style="height: 300px;">
+        <lightning-datatable
+                key-field="id"
+                data={accounts}
+                columns={columns}>
+        </lightning-datatable>
+    </div> 
+</template>
+    <lightning-card title="Datatable Example" icon-name="custom:custom63">
+
+        <div class="slds-m-around_medium">
+           
+                <lightning-datatable
+                    key-field="Id"
+                    data={accounts}
+                    columns={columns}
+                   >
+                </lightning-datatable>
+           
+          
+        </div>
+    </lightning-card>
+</template>-->
