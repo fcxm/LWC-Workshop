@@ -1,0 +1,12 @@
+<template>
+    <template if:true={isEdit}>
+            <table key= {acc.Id}  style="width: 100%;">
+      <tr style="width: 100%;">  <th style="width: 25%;">  {acc.Name} </th>
+        <th style="width: 25%;">  {acc.Phone} </th>
+        <th style="width: 25%;">  {acc.Id} </th>
+        <th style="width: 25%;"><lightning-button value='Edit' label="Edit" title="Non-primary action" onclick={handleClick}></lightning-button></th>
+    </tr>
+
+    </table>
+</template>
+</template>
