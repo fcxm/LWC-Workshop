@@ -1,0 +1,34 @@
+<template>
+    <p>Welcome to LWC.</p>
+
+    <!-- <lightning-datatable 
+        key-field="accountsId"
+        data={accounts}
+        columns={columns}
+        onsave={handleSave}
+        draft-values={draftValues}>
+    </lightning-datatable>
+    <c-focal-row-component onrowvalues={handlevalue}></c-focal-row-component> -->
+
+    <table>
+        <template for:each={columns} for:item='col'>
+            <th key={col.Id}>{col.label}</th>
+        </template>
+        <template for:each={accounts} for:item='acc'>
+            <tr key={acc.Id}>
+                <td>
+                    <c-focal-table-child field-value={acc.Id} record-id={acc.Id}></c-focal-table-child>
+                </td>
+                <td>
+                    <c-focal-table-child field-value={acc.Name} record-id={acc.Id}></c-focal-table-child>
+                </td>
+                <td>
+                    <c-focal-table-child field-value={acc.Phone} record-id={acc.Id}></c-focal-table-child>
+                </td>
+                <td>
+                    <c-focal-table-child field-value="Edit" record-id={acc.Id} is-edit=true oneditaccount={handeleditaccount}></c-focal-table-child>
+                </td>
+            </tr>
+        </template>
+    </table>
+</template>
