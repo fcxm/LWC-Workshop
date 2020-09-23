@@ -5,6 +5,8 @@
                 data={accounts}
                 columns={columns}>
         </lightning-datatable> -->
+        <lightning-button label="Save" onclick={handleSave}></lightning-button>
+        <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
         <table>
                 <template for:each={columns} for:item='col'>
                         <th key={col.Id}> {col.label} </th>
@@ -12,10 +14,38 @@
                     <template for:each={accounts} for:item='acc'>
                         
                         <tr key ={acc.Id} >
-                                <td> <c-focal-table-row account={acc.Id} record-id={acc.Id}> </c-focal-table-row></td>
-                                <td> <c-focal-table-row account={acc.Name} record-id={acc.Id} > </c-focal-table-row></td>
-                                <td> <c-focal-table-row account={acc.Phone} record-id={acc.Id} > </c-focal-table-row></td>
-                                <td> <c-focal-table-row account={acc.Id} record-id={acc.Id} is-edit=true oneditaccount= {handleeditaccount}> </c-focal-table-row></td>
+                        <td>
+                                <template if:true={acc.Editable}>
+                                        <lightning-input type="text" class="slds-input inputFieldWidth" onfocusout={closeNameBox}
+                                            label="Enter some text" value={acc.Id} disabled></lightning-input>
+                                </template>
+                                <template if:false={acc.Editable}>   
+                                 <c-focal-table-row account={acc.Id} record-id={acc.Id}> </c-focal-table-row>
+                                </template>
+                        </td>
+                        <td>
+                                <template if:true={acc.Editable}>
+                                        <lightning-input type="text" class="slds-input inputFieldWidth" onfocusout={closeNameBox}
+                                onchange={onNameChange} data-field="Name" name="input1" data-id={acc.Id}
+                                label="Enter some text" value={acc.Name}></lightning-input>
+                                </template>
+                                <template if:false={acc.Editable}>           
+                                <c-focal-table-row account={acc.Name} record-id={acc.Id} > </c-focal-table-row>
+                                </template>
+                        </td>
+                        <td> 
+                                <template if:true={acc.Editable}>
+                                        <lightning-input type="text" class="slds-input inputFieldWidth" onfocusout={closeNameBox}
+                                        onchange={onPhoneChange} data-field="Phone" label="Enter some text" data-id={acc.Id}
+                                        value={acc.Phone}></lightning-input>
+                                </template>
+                                <template if:false={acc.Editable}> 
+                                        <c-focal-table-row account={acc.Phone} record-id={acc.Id} > </c-focal-table-row>
+                                </template>
+                        </td>
+                                <td>
+                                         <c-focal-table-row account="Edit" record-id={acc.Id} is-edit=true oneditaccount= {handeleditaccount}> </c-focal-table-row>
+                                </td>
                              </tr>
                                
                            <!--<th>{acc.Id}</th>
