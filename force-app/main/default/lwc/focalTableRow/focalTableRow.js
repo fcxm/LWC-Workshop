@@ -1,7 +1,7 @@
 import { LightningElement,track,api } from 'lwc';
 
-export default class focalTableChild extends LightningElement {
-    @api fieldValue;
+export default class FocalTableRow extends LightningElement {
+    @api account;
     @api recordId;
     @api isEdit;
     connectedCallback(){
@@ -15,7 +15,7 @@ export default class focalTableChild extends LightningElement {
           });
           // Fire the custom event
           this.dispatchEvent(rowDataEvent);
-       // console.log("-->"+JSON.stringify(this.fieldValue));
+       // console.log("-->"+JSON.stringify(this.account));
 
     }
 

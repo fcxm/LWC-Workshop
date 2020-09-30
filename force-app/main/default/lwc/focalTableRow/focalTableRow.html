@@ -1,0 +1,8 @@
+<template>
+    <template if:true={isEdit}>
+        <lightning-button label="Edit" onclick={editRecord}></lightning-button>
+    </template>
+    <template if:false={isEdit}>
+       {account}
+   </template>
+   </template>
