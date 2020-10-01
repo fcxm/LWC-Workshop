@@ -2,43 +2,68 @@
   @description       : 
   @author            : ChangeMeIn@UserSettingsUnder.SFDoc
   @group             : 
-  @last modified on  : 08-23-2020
+  @last modified on  : 10-01-2020
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
   Modifications Log 
   Ver   Date         Author                               Modification
   1.0   08-23-2020   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
 -->
 <template>
-  <p>Welcome to LWC.</p>
+    <p>Welcome to LWC.</p>
 
-  <!-- <lightning-datatable 
-      key-field="accountsId"
-      data={accounts}
-      columns={columns}
-      onsave={handleSave}
-      draft-values={draftValues}>
-  </lightning-datatable>
-  <c-focal-row-component onrowvalues={handlevalue}></c-focal-row-component> -->
+    <!-- <lightning-datatable 
+        key-field="accountsId"
+        data={accounts}
+        columns={columns}
+        onsave={handleSave}
+        draft-values={draftValues}>
+    </lightning-datatable>
+    <c-focal-row-component onrowvalues={handlevalue}></c-focal-row-component> -->
+    <lightning-button label="Save" onclick={handleSave}>
+    </lightning-button>
+    <lightning-button label="Cancel" onclick={handleCancel}>
+    </lightning-button>
 
-  <table>
-      <template for:each={columns} for:item='col'>
-          <th key={col.Id}>{col.label}</th>
-      </template>
-      <template for:each={accounts} for:item='acc'>
-          <tr key={acc.Id}>
-              <td>
-                  <c-focal-table-row field-value={acc.Id} record-id={acc.Id}></c-focal-table-row>
-              </td>
-              <td>
-                  <c-focal-table-row field-value={acc.Name} record-id={acc.Id}></c-focal-table-row>
-              </td>
-              <td>
-                  <c-focal-table-row field-value={acc.Phone} record-id={acc.Id}></c-focal-table-row>
-              </td>
-              <td>
-                  <c-focal-table-row field-value="Edit" record-id={acc.Id} is-edit=true oneditaccount={handeleditaccount}></c-focal-table-row>
-              </td>
-          </tr>
-      </template>
-  </table>
+    <table>
+        <template for:each={columns} for:item='col'>
+            <th key={col.Id}>{col.label}</th>
+        </template>
+        <template for:each={accounts} for:item='acc'>
+            <tr key={acc.Id}>
+                <td>
+                    <template if:true={acc.Editable}>
+                        <lightning-input type="text" class="slds-input inputFieldWidth" onfocusout={closeNameBox}
+                            label="Enter some text" value={acc.Id} disabled></lightning-input>
+                    </template>
+                    <template if:false={acc.Editable}>
+                        <c-focal-Table-Row field-value={acc.Id} record-id={acc.Id}></c-focal-Table-Row>
+                    </template>
+                </td>
+                <td>
+                    <template if:true={acc.Editable}>
+                        <lightning-input type="text" class="slds-input inputFieldWidth" onfocusout={closeNameBox}
+                            onchange={onNameChange} data-field="Name" name="input1" data-id={acc.Id}
+                            label="Enter some text" value={acc.Name}></lightning-input>
+                    </template>
+                    <template if:false={acc.Editable}>
+                        <c-focal-Table-Row field-value={acc.Name} record-id={acc.Id}></c-focal-Table-Row>
+                    </template>
+                </td>
+                <td>
+                    <template if:true={acc.Editable}>
+                        <lightning-input type="text" class="slds-input inputFieldWidth" onfocusout={closeNameBox}
+                            onchange={onPhoneChange} data-field="Phone" label="Enter some text" data-id={acc.Id}
+                            value={acc.Phone}></lightning-input>
+                    </template>
+                    <template if:false={acc.Editable}>
+                        <c-focal-Table-Row field-value={acc.Phone} record-id={acc.Id}></c-focal-Table-Row>
+                    </template>
+                </td>
+                <td>
+                    <c-focal-Table-Row field-value="Edit" record-id={acc.Id} is-edit=true
+                        oneditaccount={handeleditaccount}></c-focal-Table-Row>
+                </td>
+            </tr>
+        </template>
+    </table>
 </template>
